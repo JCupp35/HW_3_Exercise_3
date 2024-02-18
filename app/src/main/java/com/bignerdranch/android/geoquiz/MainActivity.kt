@@ -37,10 +37,10 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        binding.trueButton.setOnClickListener { view: View ->
+        binding.trueButton.setOnClickListener {
             checkAnswer(true)
         }
-        binding.falseButton.setOnClickListener { view: View ->
+        binding.falseButton.setOnClickListener {
             checkAnswer(false)
         }
         binding.nextButton.setOnClickListener {
