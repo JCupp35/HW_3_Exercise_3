@@ -57,11 +57,14 @@ class MainActivity : AppCompatActivity() {
             val questionTextResId = questionBank[currentIndex].textResId
             binding.questionTextView.setText(questionTextResId)
         }
+
+    private var correctAnswerCounter = 0
 private fun checkAnswer(userAnswer: Boolean) {
     val correctAnswer = questionBank[currentIndex].answer
 
         val messageResId = if (userAnswer == correctAnswer) {
             R.string.correct_toast
+            correctAnswerCounter++
     } else {
         R.string.incorrect_toast
         }
@@ -70,7 +73,19 @@ private fun checkAnswer(userAnswer: Boolean) {
 
         binding.trueButton.isEnabled = false
         binding.falseButton.isEnabled = false
+
+        if (currentIndex == questionBank.size - 1) {
+            showScore()
+            correctAnswerCounter = 0
+        }
 }
+
+    private fun showScore() {
+        val totalScore = (correctAnswerCounter.toDouble() / questionBank.size) * 100
+        val totalScoreFormat = String.format("%.1f%%", totalScore)
+        Toast.makeText(this, "Quiz Score: $totalScoreFormat", Toast.LENGTH_LONG).show()
+
+    }
 
     override fun onStart(){
         super.onStart()
