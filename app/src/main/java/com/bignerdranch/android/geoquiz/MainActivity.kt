@@ -45,6 +45,8 @@ class MainActivity : AppCompatActivity() {
         }
         binding.nextButton.setOnClickListener {
             currentIndex = (currentIndex + 1) % questionBank.size
+            binding.trueButton.isEnabled = true
+            binding.falseButton.isEnabled = true
             updateQuestion()
         }
 
@@ -65,6 +67,9 @@ private fun checkAnswer(userAnswer: Boolean) {
         }
         Toast.makeText(this, messageResId, Toast.LENGTH_SHORT)
             .show()
+
+        binding.trueButton.isEnabled = false
+        binding.falseButton.isEnabled = false
 }
 
     override fun onStart(){
